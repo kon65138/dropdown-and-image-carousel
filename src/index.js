@@ -8,6 +8,7 @@ topDropdownImg.setAttribute('src', threeDotsImg);
 bottomDropdownImg.setAttribute('src', threeDotsImg);
 
 dropdown('topDropdown', 'topDropdownContent', 'hover');
+dropdown('bottomDropdown', 'bottomDropdownContent', 'click');
 
 function dropdown(btnId, dropdownContentId, clickOrHover) {
   const dropdownContent = document.getElementById(dropdownContentId);
@@ -17,15 +18,18 @@ function dropdown(btnId, dropdownContentId, clickOrHover) {
     btn.addEventListener('click', () => {
       if (dropdonwContentCompStyles.getPropertyValue('display') === 'none') {
         dropdownContent.style = 'display: flex;';
-      } else {
+      } else if (
+        dropdonwContentCompStyles.getPropertyValue('display') === 'flex'
+      ) {
         dropdownContent.style = 'display: none;';
       }
     });
-  } else if (clickOrHover.toLowerCase() === 'hover')
+  } else if (clickOrHover.toLowerCase() === 'hover') {
     btn.addEventListener('mouseover', () => {
       dropdownContent.style = 'display: flex;';
     });
-  dropdownContent.addEventListener('mouseleave', () => {
-    dropdownContent.style = 'display: none;';
-  });
+    dropdownContent.addEventListener('mouseleave', () => {
+      dropdownContent.style = 'display: none;';
+    });
+  }
 }
