@@ -1,22 +1,31 @@
-import './style.css'
-import threeDotsImg from "./imgs/more_vert_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
+import './style.css';
+import threeDotsImg from './imgs/more_vert_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg';
 
-const topDropdownbtn = document.getElementById('topDropdown');
 const topDropdownImg = document.querySelector('#topDropdown img');
-const bottomDropdownbtn = document.getElementById('bottomDropdown');
 const bottomDropdownImg = document.querySelector('#bottomDropdown img');
 
 topDropdownImg.setAttribute('src', threeDotsImg);
 bottomDropdownImg.setAttribute('src', threeDotsImg);
 
+dropdown('topDropdown', 'topDropdownContent', 'hover');
 
-dropdown()
-
-function dropdown(btnId) {
-    const dropdownContent = document.querySelector(`#${btnId} + .dropdownContent`);
-    const btn = document.getElementById(btnId);
-    const dropdonwContentCompStyles = window.getComputedStyle(dropdownContent);
-    btn.addeventlister('click', () => {
-        console.log(dropdonwContentCompStyles.getPropertyValue('display'));
-    })
+function dropdown(btnId, dropdownContentId, clickOrHover) {
+  const dropdownContent = document.getElementById(dropdownContentId);
+  const btn = document.getElementById(btnId);
+  const dropdonwContentCompStyles = window.getComputedStyle(dropdownContent);
+  if (clickOrHover.toLowerCase() === 'click') {
+    btn.addEventListener('click', () => {
+      if (dropdonwContentCompStyles.getPropertyValue('display') === 'none') {
+        dropdownContent.style = 'display: flex;';
+      } else {
+        dropdownContent.style = 'display: none;';
+      }
+    });
+  } else if (clickOrHover.toLowerCase() === 'hover')
+    btn.addEventListener('mouseover', () => {
+      dropdownContent.style = 'display: flex;';
+    });
+  dropdownContent.addEventListener('mouseleave', () => {
+    dropdownContent.style = 'display: none;';
+  });
 }
