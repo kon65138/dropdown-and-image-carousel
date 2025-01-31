@@ -119,12 +119,12 @@ body {
     background-color: rgba(0, 0, 0, .1);
 }
 
-.carousel-button:hover, .carousel-button:focus {
+.carousel-button:hover, .carousel-button:focus , .dot:hover, .dot.focus, .dot[data-activeDot]{
     color: white;
     background-color: rgba(0, 0, 0, .2);
 }
 
-.carousel-button:focus {
+.carousel-button:focus , .dot:focus{
     outline: 1px solid black;
 }
 
@@ -134,4 +134,26 @@ body {
 
 .carousel-button.next {
     right: 1rem;
+}
+
+.dots {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 1.2rem;
+    width: 6rem;
+    display:flex;
+    gap: 0.5rem;
+    z-index: 2;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.dot {
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1rem;
 }
