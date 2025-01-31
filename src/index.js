@@ -7,23 +7,29 @@ const bottomDropdownImg = document.querySelector('#bottomDropdownbtn img');
 topDropdownImg.setAttribute('src', threeDotsImg);
 bottomDropdownImg.setAttribute('src', threeDotsImg);
 
-dropdown('topDropdown', 'topDropdownbtn', 'topDropdownContent', 'hover');
-dropdown(
-  'bottomDropdown',
-  'bottomDropdownbtn',
-  'bottomDropdownContent',
-  'click',
-);
+dropdown('topDropdownbtn', 'topDropdownContent', 'hover');
+dropdown('bottomDropdownbtn', 'bottomDropdownContent', 'click');
 
-function dropdown(dropdownContainerId, btnId, dropdownContentId, clickOrHover) {
+function dropdown(btnId, dropdownContentId, clickOrHover) {
   const dropdownContent = document.getElementById(dropdownContentId);
   const btn = document.getElementById(btnId);
   const dropdonwContentCompStyles = window.getComputedStyle(dropdownContent);
+  const bottom = document.querySelector('.bottom');
   if (clickOrHover.toLowerCase() === 'click') {
     btn.addEventListener('click', () => {
       if (dropdonwContentCompStyles.getPropertyValue('display') === 'none') {
         dropdownContent.style = 'display: flex;';
       } else if (
+        dropdonwContentCompStyles.getPropertyValue('display') === 'flex'
+      ) {
+        dropdownContent.style = 'display: none;';
+      }
+    });
+    bottom.addEventListener('mousedown', () => {
+      if (
+        dropdownContent.addEventListener('mouseover', () => {
+          return 'mouse is over';
+        }) !== 'mouse is over' &&
         dropdonwContentCompStyles.getPropertyValue('display') === 'flex'
       ) {
         dropdownContent.style = 'display: none;';
