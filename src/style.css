@@ -1,4 +1,4 @@
-* {
+*, *::before, *::after{
     box-sizing: border-box;
 }
 
@@ -22,7 +22,12 @@ body {
     align-items: center;
 }
 
-#topDropdown , #bottomDropdown{
+.topDropdown {
+    position: relative;
+    display: inline-block;
+}
+
+#topDropdownbtn , #bottomDropdownbtn{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,7 +38,6 @@ body {
 .dropdownContent {
     display: none;
     position: absolute;
-    top: 2rem;
     border-top: 1px solid black;
     border-right: 1px solid black;
     border-left: 1px solid black;
@@ -41,6 +45,11 @@ body {
     justify-content: center;
     align-items: center;
     background-color: rgb(207, 206, 206);
+    z-index: 1;
+}
+
+.topDropdown:hover #topDropdownContent {
+    display:flex;
 }
 
 .top .dropdownContent {
@@ -60,4 +69,16 @@ body {
 }
 
 
+.carousel {
+    width: 100vh;
+    height: 100%;
+    position: relative;
+
+}
+
+
+.slide {
+    position: absolute;
+    inset: 0;
+}
 
