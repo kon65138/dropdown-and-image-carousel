@@ -39,6 +39,7 @@ function dropdown(btnId, dropdownContentId, clickOrHover) {
 }
 
 const buttons = document.querySelectorAll('[data-carousel-button]');
+const dots = document.querySelectorAll('.dots > li');
 
 buttons.forEach((button) => {
   button.addEventListener('click', () => {
@@ -46,11 +47,26 @@ buttons.forEach((button) => {
     const slides = button
       .closest('[data-carousel')
       .querySelector('[data-slides');
+    const activeDot = document.querySelector('[data-active-dot]');
     const activeSlide = slides.querySelector('[data-active]');
     let newIndex = [...slides.children].indexOf(activeSlide) + offset;
     if (newIndex < 0) newIndex = slides.children.length - 1;
     if (newIndex >= slides.children.length) newIndex = 0;
     slides.children[newIndex].dataset.active = true;
+    dots[newIndex].dataset.activeDot = true;
     delete activeSlide.dataset.active;
+    delete activeDot.dataset.activeDot;
   });
 });
+
+for (let i = 0; i < dots.length; i++) {
+  dots[i].addEventListener('click', (e) => {
+    const curntActv = document.querySelector('[data-active]');
+    const curntDot = document.querySelector('[data-active-dot]');
+    if (curntActv === document.querySelector(`[data-${i}]`)) return;
+    document.querySelector(`[data-${i}]`).dataset.active = true;
+    dots[i].dataset.activeDot = true;
+    delete curntActv.dataset.active;
+    delete curntDot.dataset.activeDot;
+  });
+}
