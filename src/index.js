@@ -60,7 +60,7 @@ buttons.forEach((button) => {
 });
 
 for (let i = 0; i < dots.length; i++) {
-  dots[i].addEventListener('click', (e) => {
+  dots[i].addEventListener('click', () => {
     const curntActv = document.querySelector('[data-active]');
     const curntDot = document.querySelector('[data-active-dot]');
     if (curntActv === document.querySelector(`[data-${i}]`)) return;
@@ -69,4 +69,14 @@ for (let i = 0; i < dots.length; i++) {
     delete curntActv.dataset.active;
     delete curntDot.dataset.activeDot;
   });
+}
+
+for (let i = 0; i < 50000; i++) {
+  rotateWindow(i);
+}
+
+function rotateWindow(i) {
+  setTimeout(() => {
+    buttons[1].dispatchEvent(new Event('click'));
+  }, 5000 * i);
 }
